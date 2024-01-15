@@ -1,0 +1,44 @@
+// define pin numbers
+const int LED = 13;
+const int TRIG = 9;
+const int ECHO = 10;
+
+//define additional variables
+long duration;
+int distance;
+
+void setup() {
+pinMode(LED, OUTPUT);
+pinMode(TRIG, OUTPUT);
+pinMode(ECHO, INPUT);
+
+}
+void loop() {
+digitalWrite(TRIG, LOW);
+delayMicroseconds(2);
+digitalWrite(TRIG, HIGH);
+delayMicroseconds(10);
+digitalWrite(TRIG, LOW);
+
+// read the echopin, and measures time
+duration = pulseLn(ECHO, HIGH);
+
+// converts time into distance
+distance = duration*0.034/2;
+
+// print distance to serial monitor
+Serial.print("distance: ");
+Serial.print(distance);
+Serial.println(" cm");
+
+//control the LED on below 75 cm, off beyond
+if(distance < 75) {
+digitalWrite(LED, HIGH);
+}
+else{
+digitalWrite(LED, LOW);
+}
+}
+
+
+
