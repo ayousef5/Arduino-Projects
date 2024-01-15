@@ -1,0 +1,25 @@
+int greenLed = 9; // set Pin 9 to a variable
+int yellowLed = 10; // set Pin 10 to a variable
+int redLed = 11; // set Pin 11 to a variable
+
+void setup ()
+{
+pinMode(greenLed, OUTPUT); // set Green LED pin to an output
+pinMode(yellowLed, OUTPUT); // set Yellow LED pin to an output
+pinMode(redLed, OUTPUT); // set Red LED pin to an output
+}
+void loop()
+{
+digitalWrite(greenLed, HIGH); //Turn on Green LED
+delay(1000); // Wait for 1000 millisecond(s)
+digitalWrite(yellowLed, HIGH); //Turn on Yellow LED
+delay(1000); // Wait for 1000 millisecond(s)
+digitalWrite(redLed, HIGH); //Turn on Red LED
+delay(1000); // Wait for 1000 millisecond(s)
+digitalWrite(greenLed, LOW); //Turn off Green LED
+delay(1000); // Wait for 1000 millisecond(s)
+digitalWrite(yellowLed, LOW); //Turn off Yellow LED
+delay(1000); // Wait for 1000 millisecond(s)
+digitalWrite(redLed, LOW); //Turn off Red LED
+delay(1000); // Wait for 1000 millisecond(s)
+}
