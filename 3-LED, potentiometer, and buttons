@@ -1,0 +1,45 @@
+int greenLed = 9; // set pin 9 to a variable 
+int yellowLed = 10; // set Pin 10 to a variable
+int redLed = 11; // set pin 11 to a variable
+int buttonA = 4; // set pon 4 to a variable
+int buttonB = 2; // set Pin 2 to a variable
+int potPin = A0; // set Pin 2 to a variable
+int potSensorValue = 0; // ADC read value
+int LedLevel = 0; // Map ADC to LED Value
+int LedWait = 500; // time delay between blinks
+
+void setup()
+{
+pinMode(greenLed, OUTPUT); // set Green LED pin to an output
+pinMode(yellowLed, OUTPUT); // set Yellow LED pin to an output
+pinMode(redLed, OUTPUT); // set Red LED pin to an output
+pinMode(buttonA, INPUT_PULLUP); // set ButtonA to pullup input
+pinMode(buttonB, INPUT_PULLUP); // set ButtonB to pullup Input
+pinMode(putPin, INPUT); // pin A0 in an Input
+}
+
+void loop()
+{
+// read the analog in value:
+potSensorValue = analogRead(potPin);
+// map it to the range of the analog out:
+LedLevel = map(potSensorValue, 0, 1023, 0, 1000);
+
+analogWrite(greenLed, LedLevel); // turn on green led dim setting
+delay(ledWait); // Wait for 1000 millisecond(s)
+analogWrite(yellowLed, LedLevel); // turn on yellow led dim setting
+delay(ledWait); // Wait for 1000 millisecond(s)
+analogWrite(redLed, LedLevel); // turn on red led dim setting
+delay(ledWait); // Wait for 1000 millisecond(s)
+digitalWrite(greenLed, LOW); // Turn off Green LED
+delay(ledWait); // Wait for 1000 millisecond(s)
+digitalWrite(yellowLed, LOW); // Turn off Yellow LED
+delay(ledWait); // Wait for 1000 millisecond(s)
+digitalWrite(redLed, LOW); // Turn off Red LED
+delay(ledWait); // Wait for 1000 millisecond(s)
+
+}
+
+
+
+
