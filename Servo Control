@@ -1,0 +1,57 @@
+#include <Stepper.h>
+#define STEPS 32 // Number of steps per revolution of Internal shaft
+
+//define the Circuit pins
+int in1 = 11;
+int in2 = 10;
+int in3 = 9;
+int in4 = 8;
+int buttonA = 4; // set Pin 4 to a variable
+int buttonB = 2; // set Pin 2 to a variable
+
+int steps2Take; // notes: 2048 = 1 Revolution
+int cmdSteps = 32; // set the number of steps commanded each time loop runs
+
+// setup of proper sequencing for Stepper Motor Driver Pins
+// In1, In2, In3, In4 in the sequence 1-3-2-4 (NOTE SEQUENCE 1324)
+Stepper small_stepper(STEPS, in1, in3, in2, in4);
+// Assign # steps per revolution, the pins and create a small_stepper Class
+
+void setup()
+{
+pinMode(buttonA, INPUT_PULLUP); // set ButtonA to pullup Input
+pinMode(buttonB, INPUT_PULLUP); // set buttonB to pullup input
+}
+
+void loop()
+{
+// if button a is pressed spin the stepper motor CW
+if(digitalRead(buttonA) == LOW){
+small_stepper.setSpeed(500); //Max seems to be 500
+steps2Take = cmdSteps; // Rotate CW
+small_stepper.step(step2Take);
+}
+// else if button b is pressed spin the stepper motor CCW
+else if(digitalRead(buttonB) == LOW){
+small_stepper.setSpeed(500); //Max seems to be 500
+steps2Take = -cmdSteps; // Rotate CW
+small_stepper.step(step2Take);
+}
+// else wait to check button 
+else{
+delay(10);
+}
+// set all stepper pins low
+digitalWrite(8, LOW);
+digitalWrite(9, LOW);
+digitalWrite(10, LOW);
+digitalWrite(11, LOW);
+}
+
+
+
+
+
+
+
+
